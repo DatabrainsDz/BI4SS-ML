@@ -1,0 +1,31 @@
+The score For Knn: 0.11098110959836627
+The accuracy For Knn: 0.8506616257088847
+Confusion Matrix is : [[392  24]
+ [ 55  58]]
+######################################
+The score For SVM:  0.11098110959836627
+The accuracy For SVM is  0.8506616257088847
+Confusion Matrix is : [[416   0]
+ [ 79  34]]
+######################################
+The score For Logistic Regression:  0.04346068754254595
+The accuracy for LR is  0.8393194706994329
+Confusion Matrix is : [[407   9]
+ [ 76  37]]
+######################################
+The score For Naive Bayes:  0.09972770592239621
+The accuracy for NB is  0.8487712665406427
+Confusion Matrix is : [[402  14]
+ [ 66  47]]
+######################################
+The score For Decision Trees:  0.08847430224642616
+The accuracy For Decision Trees is  0.8468809073724007
+Confusion Matrix is : [[374  42]
+ [ 39  74]]
+######################################
+The score For Random Forest:  0.2685287610619469
+The accuracy For Random Forest is  0.8771266540642723
+Confusion Matrix is : [[390  26]
+ [ 39  74]]
+######################################
+The accuracy For K-means is  0.5614366729678639
