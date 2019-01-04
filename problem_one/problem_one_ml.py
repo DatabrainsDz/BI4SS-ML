@@ -22,7 +22,7 @@ formating = '%Y-%m-%d %H:%M:%S'
 scholar_year =  data["scholar_year"].values
 ages = []
 for i in range(len(scholar_year)):
-    date = datetime.datetime.strptime(birthday[i], f)
+    date = datetime.datetime.strptime(birthday[i],formating)
     ages.append(int(scholar_year[i]) - date.year)
 data["age"] = ages
 # droping the data we don't need
@@ -133,15 +133,20 @@ print('######################################')
 ############################################################
 from keras.models import Sequential
 from keras.layers import Dense
+from keras.layers import Dropout
 ########## Deep Neural Network with Keras and TensorFlow
 classifier = Sequential()
 classifier.add(Dense(output_dim=64 , kernel_initializer = 'uniform',
                      activation = 'relu' ,input_dim = 8))
+classifier.add(Dropout(0.2))
 classifier.add(Dense(output_dim=16, kernel_initializer = 'uniform',activation = 'relu'))
+classifier.add(Dropout(0.2))
 classifier.add(Dense(output_dim=4, kernel_initializer = 'uniform',activation = 'sigmoid'))
+classifier.add(Dropout(0.2))
 classifier.add(Dense(output_dim =1 , kernel_initializer = 'uniform',activation = 'sigmoid'))
+
 classifier.compile(optimizer = 'adam' , loss = 'binary_crossentropy' ,metrics=['accuracy'])
-classifier.fit(x_train,y_train,batch_size=20, epochs=100)
+classifier.fit(x_train,y_train,batch_size=10, epochs=100)
 print('######################################')
 ############################################################
 import torch.nn.functional as F
