@@ -134,6 +134,8 @@ print('######################################')
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
+from keras.optimizers import SGD
+
 ########## Deep Neural Network with Keras and TensorFlow
 classifier = Sequential()
 classifier.add(Dense(output_dim=64 , kernel_initializer = 'uniform',
@@ -144,9 +146,9 @@ classifier.add(Dropout(0.2))
 classifier.add(Dense(output_dim=4, kernel_initializer = 'uniform',activation = 'sigmoid'))
 classifier.add(Dropout(0.2))
 classifier.add(Dense(output_dim =1 , kernel_initializer = 'uniform',activation = 'sigmoid'))
-
-classifier.compile(optimizer = 'adam' , loss = 'binary_crossentropy' ,metrics=['accuracy'])
-classifier.fit(x_train,y_train,batch_size=10, epochs=100)
+sgd = SGD(lr=0.1, momentum=0.9, decay=0.0, nesterov=False)
+classifier.compile(optimizer = sgd , loss = 'binary_crossentropy' ,metrics=['accuracy'])
+classifier.fit(x_train,y_train,batch_size=20, epochs=100)
 print('######################################')
 ############################################################
 import torch.nn.functional as F
