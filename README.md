@@ -1,11 +1,11 @@
-# Business Intelligence For Support Staff - Machine Learning Models and Dataminig 💻 🛠 ⚙️
+# Business Intelligence For Support Staff - Machine Learning Models and Datamining 💻 🛠 ⚙️
 
 
 ![](https://img.shields.io/badge/Test-Passed-Green.svg) ![](https://img.shields.io/badge/Status-Finished-blue.svg) ![](https://img.shields.io/badge/Build-Pass-erd.svg)
 
 ## BI4SS Datamining 🔧
 
-At this phase, we have the data in the data warhouse and it's ready for mining, this repository include all the work that has been established to make the machine learnign models and the data mining processes.
+At this phase, we have the data in the data warehouse and it's ready for mining, this repository includes all the work that has been established to make the machine learning models and the data mining processes.
 
 ## Requirments 🛠
 
