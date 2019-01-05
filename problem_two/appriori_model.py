@@ -47,7 +47,7 @@ def run_apriori(dataset):
     for i in range(len(results)):
         found.append(list(results[i][0]))
     
-    return pd.DataFrame(subjects)
+    return pd.DataFrame(found)
 
 
 def write_result(dataframe, name):
