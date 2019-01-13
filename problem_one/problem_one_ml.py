@@ -1,5 +1,3 @@
-
-
 # importing the libraries
 import numpy as np
 import pandas as pd
@@ -26,7 +24,7 @@ for i in range(len(scholar_year)):
     ages.append(int(scholar_year[i]) - date.year)
 data["age"] = ages
 # droping the data we don't need
-data = data.drop(["id_student", "birthay" ,"year_study","year_cycle" , "scholar_year" , "status"], axis = 1)
+data = data.drop(["id_student","group" , "section","section" ,"repeated",  "birthay" ,"year_study","year_cycle" , "scholar_year" , "status"], axis = 1)
 # data_new = pd.get_dummies(X[:,1])
 
 # converting to numpy arrays
@@ -36,15 +34,27 @@ y = target_new.iloc[:].values
 # Encoding The data
 from sklearn.preprocessing import LabelEncoder
 label = LabelEncoder()
-X[:,0] = label.fit_transform(X[:,0])
-X[:,1] = label.fit_transform(X[:,1])
-X[:,-1] = label.fit_transform(X[:,-1])
+gender_encoder = LabelEncoder()
+nationality_encoder = LabelEncoder()
+
+X[:,0] = gender_encoder.fit_transform(X[:,0])
+X[:,1] = nationality_encoder.fit_transform(X[:,1])
 y = label.fit_transform(y)
+
+### savingt the Label Encoder
+np.save('gender_classes.npy' , gender_encoder.classes_)
+np.save('nationality_classes.npy' , nationality_encoder.classes_)
 
 # Standerdizing
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
+
+### savingt the Scaler
+import pickle
+scalerfile = 'scaler_one.sav'
+pickle.dump(scaler, open(scalerfile, 'wb'))
+
 
 # trying PCA
 from sklearn.decomposition import PCA
@@ -75,6 +85,8 @@ print('The accuracy For Knn:', (y_pred == y_test).mean())
 cm = confusion_matrix(y_test,y_pred)
 print('Confusion Matrix is :', cm)
 print('######################################')
+from sklearn.externals import joblib
+joblib.dump(knn, 'knn_one_v1.pkl')
 ################################################################
 from sklearn.svm import SVC
 ############# SVM
