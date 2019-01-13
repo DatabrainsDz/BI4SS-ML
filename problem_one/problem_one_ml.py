@@ -99,6 +99,7 @@ cm = confusion_matrix(y_test,y_pred)
 print('Confusion Matrix is :', cm)
 print('######################################')
 #############################################################
+joblib.dump(classifier, 'svm_one_v1.pkl')
 from sklearn.linear_model import LogisticRegression
 ############# Logistic Regression
 classifier = LogisticRegression(random_state = 0)
@@ -151,7 +152,7 @@ from keras.optimizers import SGD
 ########## Deep Neural Network with Keras and TensorFlow
 classifier = Sequential()
 classifier.add(Dense(output_dim=64 , kernel_initializer = 'uniform',
-                     activation = 'relu' ,input_dim = 8))
+                     activation = 'relu' ,input_dim = 5))
 classifier.add(Dropout(0.2))
 classifier.add(Dense(output_dim=16, kernel_initializer = 'uniform',activation = 'relu'))
 classifier.add(Dropout(0.2))
@@ -162,6 +163,7 @@ sgd = SGD(lr=0.1, momentum=0.9, decay=0.0, nesterov=False)
 classifier.compile(optimizer = sgd , loss = 'binary_crossentropy' ,metrics=['accuracy'])
 classifier.fit(x_train,y_train,batch_size=20, epochs=100)
 print('######################################')
+classifier.save("dnn.h5")
 ############################################################
 import torch.nn.functional as F
 from torch import nn
