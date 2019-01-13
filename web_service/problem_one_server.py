@@ -1,13 +1,18 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 import numpy as np
+import tensorflow as tf
+import keras
 from sklearn.externals import joblib
 import pickle
 from sklearn.preprocessing import LabelEncoder
-
+from keras.models import load_model
 app = Flask(__name__)
 
 
 one_model = joblib.load('knn_one_v1.pkl')
+one_model_3 = joblib.load('svm_one_v1.pkl')
+one_model_2 = None
+
 
 # loading the encoders
 gender_label = LabelEncoder()
@@ -26,16 +31,23 @@ def profil_prediction2():
     return jsonify(response), 200
 
 
-@app.route('/profile/<gender>/<nationality>/<bac_wilaya>/<bac_average>/<age>', methods=['GET'])
-def profil_prediction( gender , nationality , bac_wilaya , bac_average , age):
+@app.route('/profile/<int:option>/<gender>/<nationality>/<bac_wilaya>/<bac_average>/<age>', methods=['GET'])
+def profil_prediction(option , gender , nationality , bac_wilaya , bac_average , age):
 
 
     profile = np.array([gender_label.transform([gender])[0],
                        nationality_encoder.transform([bool(int(nationality))])[0],
                        int(bac_wilaya),float(bac_average),int(age)])
     new_profile = scaler.transform([profile])
+    result = int(one_model.predict(new_profile)[0])
+    # if 0 mean KNN
+    if option == 0:
+        result = int(one_model.predict(new_profile)[0])
+    # if 1 mean SVM
+    elif option == 1: 
+        result = int(one_model_3.predict(new_profile)[0])
     response = {
-        'prediction':  int(one_model.predict(new_profile)[0])
+        'prediction':  result
     }
     
     return jsonify(response), 200
@@ -43,7 +55,7 @@ def profil_prediction( gender , nationality , bac_wilaya , bac_average , age):
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
-
+    one_model_2 = load_model('dnn3.h5')
     parser = ArgumentParser()
     parser.add_argument('-p', '--port', default=4000, type=int, help='port to listen on')
     args = parser.parse_args()

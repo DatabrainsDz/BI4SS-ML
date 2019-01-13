@@ -163,7 +163,7 @@ sgd = SGD(lr=0.1, momentum=0.9, decay=0.0, nesterov=False)
 classifier.compile(optimizer = sgd , loss = 'binary_crossentropy' ,metrics=['accuracy'])
 classifier.fit(x_train,y_train,batch_size=20, epochs=100)
 print('######################################')
-classifier.save("dnn.h5")
+classifier.save("dnn3.h5")
 ############################################################
 import torch.nn.functional as F
 from torch import nn
