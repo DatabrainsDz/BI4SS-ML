@@ -41,7 +41,7 @@ def run_eclat(dataset):
             current_student= X[i,0]
             
     results = []
-    results= eclat(subjects,out = results , supp=0.05, zmin=2)
+    results= eclat(subjects,out = results , supp=0.09, zmin=2)
     
     
     found = []
@@ -55,5 +55,5 @@ def write_result(dataframe, name):
         dataframe.to_csv(name, index=False, header=False)
         
 
-dataFrame = run_eclat(mias_data_s1)
-write_result(dataFrame , 's1.csv')
+dataFrame = run_eclat(mgi_data_s3)
+write_result(dataFrame , 'eclat_mgi_s3.csv')

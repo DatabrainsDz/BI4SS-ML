@@ -1,0 +1,7 @@
+# The ecalt paramater
+    MIAS => support  = 0.05
+    MGI = > support  = 0.09
+# The Appriori Paramater
+MIAS => support  = 0.05
+    MIAS = > support  = 0.05, confidance = 0.07
+    MGI = > support  = 0.01, confidance = 0.09
