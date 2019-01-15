@@ -27,6 +27,12 @@ def get_dic(values):
                 if i[j] not in dic[i[0]]:
                     dic[i[0]].append(i[j])        
     return dic    
-    
-dataFrame = pd.DataFrame(make_table(get_dic(values)))
-dataFrame.to_csv('result.csv', header = False , index = False)
+
+
+files = ['mgi_data_s1','mgi_data_s2','mgi_data_s3','mias_data_s1','mias_data_s5','mias_data_s6',
+         'mias_data_s2' , 'mias_data_s3' ,'mias_data_s4']
+for i in files:
+    data = pd.read_csv(i+'.csv' , header = None)
+    values = data.iloc[:].values
+    dataFrame = pd.DataFrame(make_table(get_dic(values)))
+    dataFrame.to_csv('sql_'+i+'.csv', header = False , index = False)

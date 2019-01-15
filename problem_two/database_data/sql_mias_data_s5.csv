@@ -1,0 +1,17 @@
+I G C,P_Log
+I G C,RES
+I G C,SYS E
+I G C,Th_Gr
+P_Log,DIG
+P_Log,crypt
+P_Log,RES
+P_Log,Th_Gr
+P_Log,SYS E
+RES,crypt
+SYS E,RES
+SYS E,Th_Gr
+SYS E,crypt
+SYS E,DIG
+Th_Gr,RES
+Th_Gr,DIG
+Th_Gr,crypt

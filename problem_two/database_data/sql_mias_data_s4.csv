@@ -1,0 +1,16 @@
+ANG2,G-L
+ANG2,T-L
+ANG2,B-D
+ANG2,P-L
+B-D,P-L
+G-L,B-D
+G-L,P-L
+G-L,T-L
+SD,B-D
+SD,G-L
+SD,ANG2
+SD,T-L
+SD,P-L
+T-L,ANG2
+T-L,P-L
+T-L,B-D
