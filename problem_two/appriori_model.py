@@ -1,4 +1,5 @@
 # getting the libraries
+import numpy as np
 import pandas as pd
 from apyori import apriori
 
@@ -23,7 +24,10 @@ mgi_data_s2 = mgi_data[mgi_data["semester"] == 2].drop(['semester'],axis  = 1)
 mgi_data_s3 = mgi_data[mgi_data["semester"] == 3].drop(['semester'],axis  = 1)
 
 
-def run_apriori(dataset):
+def write_result(dataframe, name):
+        dataframe.to_csv(name, index=False, header=False)
+
+def run_apriori(dataset , support , confidance):
     #converting data into nupy array
     X = dataset.iloc[:,:].values
 
@@ -40,7 +44,7 @@ def run_apriori(dataset):
             current_subject = []        
             current_student= X[i,0]
             
-    rules = apriori(subjects,min_support = 0.05, min_confidence = 0.7 , min_lift = 3 , min_length = 2)
+    rules = apriori(subjects,min_support = support, min_confidence = confidance , min_lift = 1 , min_length = 2)
     
     results = list(rules)
     found = []
@@ -50,9 +54,15 @@ def run_apriori(dataset):
     return pd.DataFrame(found)
 
 
-def write_result(dataframe, name):
-        dataframe.to_csv(name, index=False, header=False)
-        
+dataFrame = run_apriori(mias_data_s6 , 0.01,0.09)
+write_result(dataFrame , 'mias_data_s6.csv')
 
-dataFrame = run_apriori(mias_data_s1)
-write_result(dataFrame , 's1')
+# try the best support and condidance
+interval = np.linspace(0.0001, 0.01,100)
+length = 0
+
+for i in interval:
+    for j in interval:
+        dataFrame = run_apriori(mias_data_s1 , i,j)        
+        if len(dataFrame) >= 3:
+            print(" len {} sup {} and conf = {} ".format(len(dataFrame), i , j))

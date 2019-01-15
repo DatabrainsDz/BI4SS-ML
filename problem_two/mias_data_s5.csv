@@ -1,0 +1,39 @@
+DIG,,
+I G C,,
+P_Log,,
+RES,,
+SYS E,,
+Th_Gr,,
+crypt,,
+P_Log,DIG,
+I G C,P_Log,
+I G C,RES,
+I G C,SYS E,
+I G C,Th_Gr,
+P_Log,crypt,
+SYS E,RES,
+Th_Gr,RES,
+RES,crypt,
+SYS E,Th_Gr,
+SYS E,crypt,
+P_Log,RES,DIG
+P_Log,Th_Gr,DIG
+SYS E,RES,DIG
+Th_Gr,RES,DIG
+SYS E,Th_Gr,DIG
+I G C,P_Log,RES
+I G C,P_Log,SYS E
+I G C,P_Log,Th_Gr
+I G C,SYS E,RES
+I G C,Th_Gr,RES
+I G C,SYS E,Th_Gr
+P_Log,SYS E,RES
+P_Log,Th_Gr,RES
+P_Log,RES,crypt
+P_Log,Th_Gr,SYS E
+P_Log,SYS E,crypt
+P_Log,Th_Gr,crypt
+SYS E,Th_Gr,RES
+SYS E,RES,crypt
+Th_Gr,RES,crypt
+SYS E,Th_Gr,crypt
