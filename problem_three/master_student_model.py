@@ -34,7 +34,7 @@ plt.show()
 from sklearn.model_selection import train_test_split
 x_train , x_test , y_train , y_test = train_test_split(X,y , test_size = 0.3 , random_state = 40)
 ################################################################
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, f1_score
 from sklearn.metrics import confusion_matrix
 ############ KNN
 from sklearn.neighbors import KNeighborsClassifier
@@ -42,7 +42,7 @@ knn = KNeighborsClassifier(n_neighbors = 56, metric = 'minkowski',p =2)
 knn.fit(x_train , y_train)
 # Predicting the Test set results
 y_pred = knn.predict(x_test)
-print('The score For Knn:' , r2_score(y_test , y_pred))
+print('The score For Knn:' , f1_score(y_test , y_pred , average = 'macro'))
 print('The accuracy For Knn:', (y_pred == y_test).mean())
 cm = confusion_matrix(y_test,y_pred)
 print('Confusion Matrix is :', cm)
@@ -53,7 +53,7 @@ from sklearn.svm import SVC
 classifier = SVC(kernel = 'rbf',random_state = 0 , gamma = 0.001 , C = 1000)
 classifier.fit(x_train, y_train)
 y_pred = classifier.predict(x_test)
-print('The score For SVM: ' , r2_score(y_test , y_pred))
+print('The score For SVM: ' ,f1_score(y_test , y_pred , average = 'macro'))
 print('The accuracy For SVM is ', (y_pred == y_test).mean())
 cm = confusion_matrix(y_test,y_pred)
 print('Confusion Matrix is :', cm)
@@ -64,7 +64,7 @@ from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression(random_state = 0)
 classifier.fit(x_train,y_train)
 y_pred = classifier.predict(x_test)
-print('The score For Logistic Regression: ' , r2_score(y_test , y_pred))
+print('The score For Logistic Regression: ' , f1_score(y_test , y_pred , average = 'macro'))
 print('The accuracy for LR is ', (y_pred == y_test).mean())
 cm = confusion_matrix(y_test,y_pred)
 print('Confusion Matrix is :', cm)
@@ -75,7 +75,7 @@ from sklearn.naive_bayes import GaussianNB
 classifier = GaussianNB()
 classifier.fit(x_train,y_train)
 y_pred = classifier.predict(x_test)
-print('The score For Naive Bayes: ' , r2_score(y_test , y_pred))
+print('The score For Naive Bayes: ' , f1_score(y_test , y_pred , average = 'macro'))
 print('The accuracy for NB is ', (y_pred == y_test).mean())
 cm = confusion_matrix(y_test,y_pred)
 print('Confusion Matrix is :', cm)
@@ -86,7 +86,7 @@ from sklearn.tree import DecisionTreeClassifier
 classifier = DecisionTreeClassifier(criterion ='entropy')
 classifier.fit(x_train,y_train)
 y_pred = classifier.predict(x_test)
-print('The score For Decision Trees: ' , r2_score(y_test , y_pred))
+print('The score For Decision Trees: ' , f1_score(y_test , y_pred , average = 'macro'))
 print('The accuracy For Decision Trees is ', (y_pred == y_test).mean())
 cm = confusion_matrix(y_test, y_pred)
 print('Confusion Matrix is :', cm)
@@ -97,7 +97,7 @@ from sklearn.ensemble import RandomForestClassifier
 classifier = RandomForestClassifier( n_estimators = 50 , criterion ='entropy')
 classifier.fit(x_train,y_train)
 y_pred = classifier.predict(x_test)
-print('The score For Random Forest: ' , r2_score(y_test , y_pred))
+print('The score For Random Forest: ' , f1_score(y_test , y_pred , average = 'macro'))
 print('The accuracy For Random Forest is ', (y_pred == y_test).mean())
 cm = confusion_matrix(y_test,y_pred)
 print('Confusion Matrix is :', cm)

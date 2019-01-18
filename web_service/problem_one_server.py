@@ -1,11 +1,9 @@
 from flask import Flask, jsonify
 import numpy as np
-import tensorflow as tf
-import keras
 from sklearn.externals import joblib
 import pickle
 from sklearn.preprocessing import LabelEncoder
-from keras.models import load_model
+
 app = Flask(__name__)
 
 
@@ -55,7 +53,7 @@ def profil_prediction(option , gender , nationality , bac_wilaya , bac_average ,
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
-    one_model_2 = load_model('dnn3.h5')
+    
     parser = ArgumentParser()
     parser.add_argument('-p', '--port', default=4000, type=int, help='port to listen on')
     args = parser.parse_args()
