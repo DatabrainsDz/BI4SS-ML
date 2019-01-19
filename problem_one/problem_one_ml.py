@@ -162,6 +162,9 @@ classifier.add(Dense(output_dim =1 , kernel_initializer = 'uniform',activation =
 sgd = SGD(lr=0.1, momentum=0.9, decay=0.0, nesterov=False)
 classifier.compile(optimizer = sgd , loss = 'binary_crossentropy' ,metrics=['accuracy'])
 classifier.fit(x_train,y_train,batch_size=20, epochs=100)
+y_pred = np.round(classifier.predict(x_test))
+print('The score For Neural network is' , f1_score(y_test , y_pred))
+print('The accuracy For Neural network is ', (y_pred == y_test).mean())
 print('######################################')
 classifier.save("dnn3.h5")
 ############################################################
